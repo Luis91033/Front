@@ -32,4 +32,5 @@ resultado = carrito.reduce(function(total, producto) {
 resultado = carrito.filter(function(producto) {
     return producto.precio > 400
 });
+
 console.log(resultado);

@@ -36,4 +36,12 @@ while(i < 10) { // Condición
     i++;
 }   
 
-//
+// Do While Loop
+ 
+let i = 0;
+
+do {
+    console.log(i);
+    i++;
+
+} while( i < 10);

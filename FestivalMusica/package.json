@@ -1,0 +1,29 @@
+{
+  "name": "festivalmusica",
+  "version": "1.0.0",
+  "description": "Proyecto con Gulp, SASS y HTML",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sass": "sass --watch src/scss:build/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Luis91033/Front.git"
+  },
+  "keywords": [
+    "SASS",
+    "Gulp"
+  ],
+  "author": "Eduardo Corral",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Luis91033/Front/issues"
+  },
+  "homepage": "https://github.com/Luis91033/Front#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "sass": "^1.49.8"
+  }
+}

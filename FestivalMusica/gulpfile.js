@@ -1,9 +1,21 @@
+const {src, dest, watch} = require('gulp');
+const sass = require('gulp-sass')(require('sass'));
 
-function tarea(callback){
+function css(done){
+   
+    src('src/scss/**/*.scss') //Identificar el archivo .SCSS a compilar
+        .pipe( sass() ) //Compilar
+        .pipe( dest('build/css') ) //Almacena en el disco duro
 
-    console.log('Desde la primer tarea');
-
-    callback();
+    done();
 }
 
-exports.tarea = tarea;
+function dev(done){
+
+    watch('src/scss/**/*.scss', css) //Los asteriscos sirven para inidcar que se va a compilar en todos los archivos con las extensión .scss
+    done();
+}
+
+
+exports.css = css;
+exports.dev = dev;

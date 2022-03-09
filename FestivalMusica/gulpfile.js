@@ -1,6 +1,14 @@
-const {src, dest, watch} = require('gulp');
+const {src, dest, watch, parallel} = require('gulp');
+
+// CSS
 const sass = require('gulp-sass')(require('sass'));
 const plumber = require('gulp-plumber');
+
+// Imágenes
+const cache = require('gulp-cache');
+const imagemin = require('gulp-imagemin');
+const webp = require('gulp-webp');
+const avif = require('gulp-avif');
 
 function css(done){
    
@@ -8,6 +16,44 @@ function css(done){
         .pipe( plumber() )
         .pipe( sass() ) //Compilar
         .pipe( dest('build/css') ) //Almacena en el disco duro
+
+    done();
+}
+
+function imagenes(done) {  //Optimizamos imágenes
+    const opciones = {
+        optmizationLevel: 3
+    }
+
+    src('src/img/**/*.{png,jpg}')
+    .pipe(cache(imagemin(opciones)))
+    .pipe(dest('build/img'))
+
+    done();
+}
+
+function versionavif(done) {
+
+    const opciones = {
+        quality: 50
+    };
+
+    src('src/img/**/*.{png,jpg}')
+        .pipe( avif(opciones))
+        .pipe(dest('build/img'))
+
+    done();
+}
+
+function versionwebp(done) {
+
+    const opciones = {
+        quality: 50
+    };
+
+    src('src/img/**/*.{png,jpg}')
+        .pipe( webp(opciones))
+        .pipe(dest('build/img'))
 
     done();
 }
@@ -20,4 +66,7 @@ function dev(done){
 
 
 exports.css = css;
-exports.dev = dev;
+exports.imagenes = imagenes;
+exports.versionwebp = versionwebp;
+exports.versionavif = versionavif;
+exports.dev = parallel(imagenes, versionwebp, versionavif, dev );

@@ -58,15 +58,24 @@ function versionwebp(done) {
     done();
 }
 
+function js(done){
+    src('src/js/**/*.js')
+    .pipe(dest('build/js'))
+
+    done();
+}
+
 function dev(done){
 
     watch('src/scss/**/*.scss', css) //Los asteriscos sirven para inidcar que se va a compilar en todos los archivos con las extensión .scss
+    watch('src/js/**/*.js', js)
     done();
 }
 
 
 exports.css = css;
+exports.js = js;
 exports.imagenes = imagenes;
 exports.versionwebp = versionwebp;
 exports.versionavif = versionavif;
-exports.dev = parallel(imagenes, versionwebp, versionavif, dev );
+exports.dev = parallel(imagenes, versionwebp, versionavif, js, dev );
